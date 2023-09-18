@@ -9,7 +9,7 @@ VERSION_FILE_PATH = os.path.join(PACKAGE_PATH, '__init__.py')
 REQUIREMENTS_FILE_PATH = 'requirements.txt'
 
 # Read __version__ from VERSION_FILE_PATH
-#exec(open(VERSION_FILE_PATH).read())
+exec(open(VERSION_FILE_PATH).read())
 
 # Reformat editable requirements with proper VCS links
 with open(REQUIREMENTS_FILE_PATH, 'r') as requirements_file:
@@ -19,7 +19,7 @@ requirements_text = re.sub(r'^\s*\-e\s+([^=]+)=([^\n]+)', r'\2 @ \1=\2', text, f
 # Build setup
 setup(
     name=PACKAGE_NAME,
-    version="0.1",
+    version=__version__,
     package_dir={PACKAGE_NAME: PACKAGE_PATH},
     packages=find_packages(
         include=[PACKAGE_NAME, f'{PACKAGE_NAME}.*'],
